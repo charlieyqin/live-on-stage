@@ -1,0 +1,49 @@
+{
+  "name": "live-on-stage",
+  "version": "1.5.0",
+  "description": "High performance library for tracking DOM elements entering and leaving the viewport.",
+  "author": "Matt Perry <sirhound@popmotion.io>",
+  "homepage": "http://popmotion.io",
+  "main": "./lib/live-on-stage.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Popmotion/live-on-stage"
+  },
+  "bugs": {
+    "url": "https://github.com/Popmotion/live-on-stage/issues"
+  },
+  "keywords": [
+    "viewport"
+  ],
+  "analyze": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run lint && babel src --out-dir lib",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.0.20",
+    "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.0.1",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-preset-es2015-subset-loose": "^1.0.0",
+    "babel-preset-stage-2": "^6.0.15",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-flowtype": "^2.2.7",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.1.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "webpack": "1.7.2"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.6",
+    "lodash.throttle": "^4.0.1"
+  }
+}
