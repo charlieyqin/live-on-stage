@@ -129,7 +129,7 @@ export const stopTrackingElement = (dataId) => {
   // If element ID is found
   if (i !== -1) {
     elementIdsToCheck.splice(i, 1);
-    numElementsToCheck++;
+    numElementsToCheck--;
     delete elements[dataId];
     return true;
   }

@@ -1,12 +1,6 @@
 # Live on Stage
 
-#### High performance library for tracking DOM elements entering and leaving the viewport.
-
-Live on Stage achieves high performance by:
-
-- Measuring element bounding boxes once, when tracking begins.
-- Throttles viewport measurement and event checking to 30fps.
-- Only remeasures bounding boxes when window resizing has finished for 100 milliseconds.
+#### High performance tracking of DOM elements entering and leaving the viewport.
 
 ## Install
 
@@ -28,11 +22,11 @@ const trackingId = startTrackingElement(document.querySelector('div'), options);
 
 #### Options
 
-- `onEnter: function`: Fires when element enters the viewport.
-- `onLeave: function`: Fires when element leaves the viewport.
+- `onEnter: function`: Fires when element enters the viewport (becomes visible).
+- `onLeave: function`: Fires when element leaves the viewport (becomes non-visible).
 - `onPartialLeave: function`: Fires when the element **begins** to leaves the viewport.
 - `onCompleteEnter: function`: Fires when an element **completely** enters the viewport.
-- `buffer: number`: Size, in pixels, to add to each part of the element's calculated bounding box.
+- `buffer: number`: Size, in pixels, to add to each side of the element's calculated bounding box.
 
 ### Stop tracking an element
 
