@@ -92,7 +92,7 @@ function measureAll() {
  * @param {HTMLElement} DOM element to measure and track
  * @return {number}: ID of tracked bounding box
  */
-export const startTrackingElement = (element, opts) => {
+export function startTrackingElement(element, opts) {
   // If there's no viewport, we haven't initialised
   if (!viewport) {
     viewport = new Viewport();
@@ -123,7 +123,7 @@ export const startTrackingElement = (element, opts) => {
  * @param  {number}: ID of tracked bounding box
  * @return {boolean}: `true` if bounding box found and finished
  */
-export const stopTrackingElement = (dataId) => {
+export function stopTrackingElement(dataId) {
   const i = elementIdsToCheck.indexOf(dataId);
 
   // If element ID is found
@@ -136,3 +136,5 @@ export const stopTrackingElement = (dataId) => {
 
   return false;
 };
+
+
