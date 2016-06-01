@@ -22,10 +22,10 @@ const trackingId = startTrackingElement(document.querySelector('div'), options);
 
 #### Options
 
-- `onEnter: function`: Fires when element enters the viewport (becomes visible).
-- `onLeave: function`: Fires when element leaves the viewport (becomes non-visible).
-- `onPartialLeave: function`: Fires when the element **begins** to leaves the viewport.
-- `onCompleteEnter: function`: Fires when an element **completely** enters the viewport.
+- `onEnter: function`: Fires when element enters the viewport (becomes visible). Opposite: `onLeave`
+- `onLeave: function`: Fires when element leaves the viewport (becomes non-visible). Opposite: `onEnter`
+- `onBeginLeave: function`: Fires when the element **begins** to leaves the viewport. Opposite: `onCompleteEnter`
+- `onCompleteEnter: function`: Fires when an element **completely** enters the viewport. Opposite: `onBeginLeave`
 - `buffer: number`: Size, in pixels, to add to each side of the element's calculated bounding box.
 
 Callbacks are provided one argument, `elementData`, which can be used to query the positional status of an element:

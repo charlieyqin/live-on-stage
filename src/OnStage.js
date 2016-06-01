@@ -4,11 +4,26 @@ import { startTrackingElement, stopTrackingElement } from './live-on-stage';
 
 class OnStage extends React.Component {
   componentDidMount() {
-    this.trackId = startTrackingElement(ReactDOM.findDOMNode(this), this.props);
+    this.startTrackingPosition();
   }
 
   componentWillUnmount() {
-    stopTrackingElement(this.trackId);
+    this.stopTrackingPosition();
+  }
+
+  componentDidReceiveProps(nextProps) {
+    this.stopTrackingPosition();
+    this.startTrackingPosition(nextProps);
+  }
+
+  startTrackingPosition(props = this.props) {
+    this.trackId = startTrackingElement(ReactDOM.findDOMNode(this), props);
+  }
+
+  stopTrackingPosition() {
+    if (this.trackId) {
+      stopTrackingElement(this.trackId);
+    }
   }
 
   render() {
