@@ -17,50 +17,55 @@ let viewport;
  * @return {void}
  */
 function check(elementData) {
-  // Check if element is completely off screen
-  const isOffTop = viewport.top > elementData.bottom;
-  const isOffRight = viewport.right < elementData.left;
-  const isOffBottom = viewport.bottom < elementData.top;
-  const isOffLeft = viewport.left > elementData.right;
-  const isOffScreen = (isOffTop || isOffRight || isOffBottom || isOffLeft);
-
-  // Check if element is completely within screen
-  const isWithinTop = viewport.top >= elementData.top;
-  const isWithinRight = viewport.right >= elementData.right;
-  const isWithinBottom = viewport.bottom <= elementData.bottom;
-  const isWithinLeft = viewport.left <= elementData.left;
-  const isWithinScreen = (isWithinTop && isWithinRight && isWithinBottom & isWithinLeft);
-
   let callback;
 
-  // If element was off screen and now isn't, enter
-  if (elementData.onEnter && elementData.isOffScreen && !isOffScreen) {
-    callback = elementData.onEnter;
+  if (elementData.onEnter || elementData.onLeave) {
+    // Check if element is completely off screen
+    const isOffTop = viewport.top > elementData.bottom;
+    const isOffRight = viewport.right < elementData.left;
+    const isOffBottom = viewport.bottom < elementData.top;
+    const isOffLeft = viewport.left > elementData.right;
+    const isOffScreen = (isOffTop || isOffRight || isOffBottom || isOffLeft);
 
-  // Or if element was on screen and now isn't, leave
-  } else if (elementData.onLeave && elementData.isOffScreen === false && isOffScreen) {
-    callback = elementData.onLeave;
+    // If element was off screen and now isn't, enter
+    if (elementData.onEnter && elementData.isOffScreen && !isOffScreen) {
+      callback = elementData.onEnter;
 
-  // Or if element was within screen and now isn't, begin leave
-  } else if (elementData.onBeginLeave && elementData.isWithinScreen && !isWithinScreen) {
-    callback = elementData.onBeginLeave;
+    // Or if element was on screen and now isn't, leave
+    } else if (elementData.onLeave && elementData.isOffScreen === false && isOffScreen) {
+      callback = elementData.onLeave;
+    }
 
-  // Or if element was not completely within screen and now is, complete enter
-  } else if (elementData.onCompleteEnter && elementData.isWithinScreen === false && isWithinScreen) {
-    callback = elementData.onCompleteEnter;
+    // Update element data with latest position
+    elementData.isOffTop = isOffTop;
+    elementData.isOffRight = isOffRight;
+    elementData.isOffBottom = isOffBottom;
+    elementData.isOffLeft = isOffLeft;
+    elementData.isOffScreen = isOffScreen;
   }
 
-  // Update element data with latest position
-  elementData.isOffTop = isOffTop;
-  elementData.isOffRight = isOffRight;
-  elementData.isOffBottom = isOffBottom;
-  elementData.isOffLeft = isOffLeft;
-  elementData.isOffScreen = isOffScreen;
-  elementData.isWithinTop = isWithinTop;
-  elementData.isWithinRight = isWithinRight;
-  elementData.isWithinBottom = isWithinBottom;
-  elementData.isWithinLeft = isWithinLeft;
-  elementData.isWithinScreen = isWithinScreen;
+  if (elementData.onBeginLeave || elementData.onCompleteEnter) {
+    // Check if element is completely within screen
+    const isWithinTop = viewport.top <= elementData.top;
+    const isWithinRight = viewport.right >= elementData.right;
+    const isWithinBottom = viewport.bottom >= elementData.bottom;
+    const isWithinLeft = viewport.left <= elementData.left;
+    const isWithinScreen = (isWithinTop && isWithinRight && isWithinBottom && isWithinLeft);
+    // Or if element was within screen and now isn't, begin leave
+    if (elementData.onBeginLeave && elementData.isWithinScreen && !isWithinScreen) {
+      callback = elementData.onBeginLeave;
+
+    // Or if element was not completely within screen and now is, complete enter
+    } else if (elementData.onCompleteEnter && elementData.isWithinScreen === false && isWithinScreen) {
+      callback = elementData.onCompleteEnter;
+    }
+
+    elementData.isWithinTop = isWithinTop;
+    elementData.isWithinRight = isWithinRight;
+    elementData.isWithinBottom = isWithinBottom;
+    elementData.isWithinLeft = isWithinLeft;
+    elementData.isWithinScreen = isWithinScreen;
+  }
 
   if (callback) {
     callback(elementData);
@@ -73,13 +78,13 @@ function check(elementData) {
  * @return {void}
  */
 function checkNew(elementData) {
-  if (elementData.onEnter && !elementData.isOffScreen) {
+  if (elementData.onEnter && elementData.isOffScreen === false) {
     elementData.onEnter(elementData);
-  } else if (elementData.onLeave && elementData.isOffScreen) {
+  } else if (elementData.onLeave && elementData.isOffScreen === true) {
     elementData.onLeave(elementData);
-  } else if (elementData.onBeginLeave && !elementData.isWithinScreen) {
+  } else if (elementData.onBeginLeave && elementData.isWithinScreen === false) {
     elementData.onBeginLeave(elementData);
-  } else if (elementData.onCompleteEnter && elementData.isWithinScreen) {
+  } else if (elementData.onCompleteEnter && elementData.isWithinScreen === true) {
     elementData.onCompleteEnter(elementData);
   }
 }
@@ -155,7 +160,7 @@ export function startTrackingElement(element, opts) {
   elementIdsToCheck.push(idCounter);
   elements[idCounter] = elementData;
 
-  measure(elementData);
+  measure(idCounter);
   check(elementData);
   checkNew(elementData);
 
