@@ -4,7 +4,7 @@
  * Mutates its own internal state to prevent excessive GC, as this
  * may be called multiple times a second during constant scrolling.
  */
-export default class Viewport {
+export default class Foo {
   constructor() {
     this.body = document.body;
     this.doc = document.documentElement;
