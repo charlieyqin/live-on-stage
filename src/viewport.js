@@ -6,15 +6,20 @@
  */
 export default class Viewport {
   constructor() {
-    this.body = document.body;
     this.doc = document.documentElement;
+    this.remeasure();
     this.update();
   }
 
+  remeasure() {
+    this.width = this.doc.clientWidth;
+    this.height = this.doc.clientHeight;
+  }
+
   update() {
-    this.top = this.body.scrollTop;
-    this.left = this.body.scrollLeft;
-    this.bottom = this.top + this.doc.clientHeight;
-    this.right = this.left + this.doc.clientWidth;
+    this.top = window.pageXOffset;
+    this.left = window.pageYOffset;
+    this.bottom = this.top + this.height;
+    this.right = this.left + this.width;
   }
 }

@@ -127,6 +127,8 @@ export function measure(id) {
  * @return {void}
  */
 function measureAll() {
+  viewport.remeasure();
+
   for (let i = 0; i < numElementsToCheck; i++) {
     measure(elementIdsToCheck[i]);
   }
