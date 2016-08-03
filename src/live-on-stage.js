@@ -1,4 +1,3 @@
-import throttle from 'lodash.throttle';
 import debounce from 'lodash.debounce';
 import Viewport from './viewport';
 
@@ -144,10 +143,17 @@ function measureAll() {
  * @return {number}: ID of tracked bounding box
  */
 export function startTrackingElement(element, opts) {
+  let checkNextFrame;
+
   // If there's no viewport, we haven't initialised
   if (!viewport) {
     viewport = new Viewport();
-    window.addEventListener('scroll', throttle(checkAll, 1000 / 30));
+    window.addEventListener('scroll', () => {
+      if (checkNextFrame) {
+        cancelAnimationFrame(checkNextFrame);
+        checkNextFrame = requestAnimationFrame(checkAll);
+      }
+    });
     window.addEventListener('resize', debounce(measureAll, 100));
   }
 
