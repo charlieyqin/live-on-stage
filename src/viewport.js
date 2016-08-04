@@ -17,8 +17,8 @@ export default class Viewport {
   }
 
   update() {
-    this.top = window.pageXOffset;
-    this.left = window.pageYOffset;
+    this.top = window.pageYOffset;
+    this.left = window.pageXOffset;
     this.bottom = this.top + this.height;
     this.right = this.left + this.width;
   }

@@ -151,8 +151,8 @@ export function startTrackingElement(element, opts) {
     window.addEventListener('scroll', () => {
       if (checkNextFrame) {
         cancelAnimationFrame(checkNextFrame);
-        checkNextFrame = requestAnimationFrame(checkAll);
       }
+      checkNextFrame = requestAnimationFrame(checkAll);
     });
     window.addEventListener('resize', debounce(measureAll, 100));
   }
