@@ -118,6 +118,10 @@ export function measure(id) {
   elementData.right = right + viewport.left + buffer;
   elementData.bottom = bottom + viewport.top + buffer;
   elementData.left = left + viewport.left - buffer;
+
+  if (elementData.onMeasure) {
+    elementData.onMeasure(elementData);
+  }
 }
 
 /**

@@ -21,7 +21,7 @@
   "analyze": true,
   "license": "MIT",
   "scripts": {
-    "build": "npm run lint && babel src --out-dir lib",
+    "build": "babel src --out-dir lib",
     "lint": "eslint src"
   },
   "devDependencies": {
