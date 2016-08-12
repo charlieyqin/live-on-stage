@@ -20,10 +20,10 @@ function check(elementData) {
 
   if (elementData.onEnter || elementData.onLeave) {
     // Check if element is completely off screen
-    const isOffTop = viewport.top > elementData.bottom;
-    const isOffRight = viewport.right < elementData.left;
-    const isOffBottom = viewport.bottom < elementData.top;
-    const isOffLeft = viewport.left > elementData.right;
+    const isOffTop = viewport.top > elementData.bottom + elementData.buffer;
+    const isOffRight = viewport.right < elementData.left - elementData.buffer;
+    const isOffBottom = viewport.bottom < elementData.top - elementData.buffer;
+    const isOffLeft = viewport.left > elementData.right + elementData.right;
     const isOffScreen = (isOffTop || isOffRight || isOffBottom || isOffLeft);
 
     // If element was off screen and now isn't, enter
@@ -45,10 +45,10 @@ function check(elementData) {
 
   if (elementData.onBeginLeave || elementData.onCompleteEnter) {
     // Check if element is completely within screen
-    const isWithinTop = viewport.top <= elementData.top;
-    const isWithinRight = viewport.right >= elementData.right;
-    const isWithinBottom = viewport.bottom >= elementData.bottom;
-    const isWithinLeft = viewport.left <= elementData.left;
+    const isWithinTop = viewport.top <= elementData.top - elementData.buffer;
+    const isWithinRight = viewport.right >= elementData.right + elementData.buffer;
+    const isWithinBottom = viewport.bottom >= elementData.bottom + elementData.buffer;
+    const isWithinLeft = viewport.left <= elementData.left - elementData.buffer;
     const isWithinScreen = (isWithinTop && isWithinRight && isWithinBottom && isWithinLeft);
     // Or if element was within screen and now isn't, begin leave
     if (elementData.onBeginLeave && elementData.isWithinScreen && !isWithinScreen) {
@@ -112,12 +112,11 @@ function checkAll() {
 export function measure(id) {
   const elementData = elements[id];
   const { top, right, bottom, left } = elementData.dom.getBoundingClientRect();
-  const { buffer } = elementData;
 
-  elementData.top = top + viewport.top - buffer;
-  elementData.right = right + viewport.left + buffer;
-  elementData.bottom = bottom + viewport.top + buffer;
-  elementData.left = left + viewport.left - buffer;
+  elementData.top = top + viewport.top;
+  elementData.right = right + viewport.left;
+  elementData.bottom = bottom + viewport.top;
+  elementData.left = left + viewport.left;
 
   if (elementData.onMeasure) {
     elementData.onMeasure(elementData);
