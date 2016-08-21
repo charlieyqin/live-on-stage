@@ -4,7 +4,9 @@ import { startTrackingElement, stopTrackingElement } from './live-on-stage';
 
 class OnStage extends React.Component {
   componentDidMount() {
-    this.startTrackingPosition();
+    if (this.props.isTracking === true || this.props.isTracking === undefined) {
+      this.startTrackingPosition();
+    }
   }
 
   componentWillUnmount() {
@@ -12,8 +14,13 @@ class OnStage extends React.Component {
   }
 
   componentDidReceiveProps(nextProps) {
-    this.stopTrackingPosition();
-    this.startTrackingPosition(nextProps);
+    // If we're stopping tracking
+    if (this.props.isTracking && !nextProps.isTracking) {
+      this.stopTrackingPosition();
+    } else {
+      this.stopTrackingPosition();
+      this.startTrackingPosition(nextProps);
+    }
   }
 
   startTrackingPosition(props = this.props) {

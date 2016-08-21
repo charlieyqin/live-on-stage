@@ -1,6 +1,6 @@
 {
   "name": "live-on-stage",
-  "version": "2.0.3",
+  "version": "2.0.7",
   "description": "High performance library for tracking DOM elements entering and leaving the viewport.",
   "author": "Matt Perry <sirhound@popmotion.io>",
   "homepage": "http://popmotion.io",
@@ -21,7 +21,7 @@
   "analyze": true,
   "license": "MIT",
   "scripts": {
-    "build": "npm run lint && babel src --out-dir lib",
+    "build": "babel src --out-dir lib",
     "lint": "eslint src"
   },
   "devDependencies": {
