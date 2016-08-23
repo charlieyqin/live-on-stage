@@ -111,16 +111,12 @@ function checkAll() {
  */
 export function measure(id) {
   const elementData = elements[id];
-
-  const top = elementData.dom.offsetTop;
-  const bottom = top + elementData.dom.offsetHeight;
-  const left = elementData.dom.offsetLeft;
-  const right = left + elementData.dom.offsetWidth;
+  const { top, right, bottom, left } = elementData.dom.getBoundingClientRect();
 
   elementData.top = top + viewport.top;
+  elementData.right = right + viewport.left;
   elementData.bottom = bottom + viewport.top;
   elementData.left = left + viewport.left;
-  elementData.right = right + viewport.left;
 
   if (elementData.onMeasure) {
     elementData.onMeasure(elementData);
