@@ -1,6 +1,6 @@
 {
   "name": "live-on-stage",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "High performance library for tracking DOM elements entering and leaving the viewport.",
   "author": "Matt Perry <sirhound@popmotion.io>",
   "homepage": "http://popmotion.io",

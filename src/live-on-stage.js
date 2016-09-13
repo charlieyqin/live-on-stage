@@ -166,6 +166,17 @@ export function startTrackingElement(element, opts) {
     ...opts
   };
 
+  const elementId = idCounter++;
+
+  requestAnimationFrame(() => {
+    numElementsToCheck++;
+    elementIdsToCheck.push(numElementsToCheck);
+    elements[elementId] = elementData;
+    measure(elementId);
+    check(elementData);
+    checkNew(elementData);
+  });
+
   idCounter++;
   numElementsToCheck++;
   elementIdsToCheck.push(idCounter);

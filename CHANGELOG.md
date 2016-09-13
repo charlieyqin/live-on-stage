@@ -2,6 +2,11 @@
 
 Live on Stage adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.9] 2016-09-13
+
+### Added
+- Moved initial measurements to a `rAF` callback to let the DOM settle after adding multiple new elements.
+
 ## [2.0.8] 2016-08-23
 
 ### Added
