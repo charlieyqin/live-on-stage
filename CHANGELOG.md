@@ -2,6 +2,11 @@
 
 Live on Stage adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.11] 2016-10-14
+
+### Fixed
+- Incorrect id being pushed to idsToCheck
+
 ## [2.0.10] 2016-10-14
 
 ### Added
