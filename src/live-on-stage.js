@@ -69,6 +69,10 @@ function check(elementData) {
   if (callback) {
     callback(elementData);
   }
+
+  if (elementData.onScroll) {
+    elementData.onScroll(elementData);
+  }
 }
 
 /**
@@ -177,15 +181,6 @@ export function startTrackingElement(element, opts) {
     checkNew(elementData);
   });
 
-  idCounter++;
-  numElementsToCheck++;
-  elementIdsToCheck.push(idCounter);
-  elements[idCounter] = elementData;
-
-  measure(idCounter);
-  check(elementData);
-  checkNew(elementData);
-
   return idCounter;
 }
 
@@ -207,4 +202,8 @@ export function stopTrackingElement(id) {
   }
 
   return false;
+}
+
+export function manuallyCheckAll() {
+  requestAnimationFrame(checkAll);
 }

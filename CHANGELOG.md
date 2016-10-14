@@ -2,6 +2,12 @@
 
 Live on Stage adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.10] 2016-10-14
+
+### Added
+- `manuallyCheckAll` method.
+- `onScroll` event.
+
 ## [2.0.9] 2016-09-13
 
 ### Added

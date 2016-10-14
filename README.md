@@ -26,6 +26,8 @@ const trackingId = startTrackingElement(document.querySelector('div'), options);
 - `onLeave: function`: Fires when element leaves the viewport (becomes non-visible). Opposite: `onEnter`
 - `onBeginLeave: function`: Fires when the element **begins** to leaves the viewport. Opposite: `onCompleteEnter`
 - `onCompleteEnter: function`: Fires when an element **completely** enters the viewport. Opposite: `onBeginLeave`
+- `onMeasure: function`: Fires when an element is measured - usually on tracking start or screen resize.
+- `onScroll: function`: Fires when the screen is scrolled.
 - `buffer: number`: Size, in pixels, to add to each side of the element's calculated bounding box.
 
 Callbacks are provided one argument, `elementData`, which can be used to query the positional status of an element:
@@ -43,13 +45,10 @@ import { stopTrackingElement } from 'live-on-stage';
 stopTrackingElement(trackingId);
 ```
 
-### Manually measure an element
-
-If an element has moved around on the page as a result of something other than a window resize event, its bounding box can be manually updated with `measureElement`.
+### Manually check scroll position
 
 ```js
-import { measureElement } from 'live-on-stage';
+import { manuallyCheckAll } from 'live-on-stage';
 
-measureElement(trackingId);
+manuallyCheckAll();
 ```
-
