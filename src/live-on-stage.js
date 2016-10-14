@@ -67,11 +67,11 @@ function check(elementData) {
   }
 
   if (callback) {
-    callback(elementData);
+    callback(elementData, viewport);
   }
 
   if (elementData.onScroll) {
-    elementData.onScroll(elementData);
+    elementData.onScroll(elementData, viewport);
   }
 }
 
@@ -82,13 +82,13 @@ function check(elementData) {
  */
 function checkNew(elementData) {
   if (elementData.onEnter && elementData.isOffScreen === false) {
-    elementData.onEnter(elementData);
+    elementData.onEnter(elementData, viewport);
   } else if (elementData.onLeave && elementData.isOffScreen === true) {
-    elementData.onLeave(elementData);
+    elementData.onLeave(elementData, viewport);
   } else if (elementData.onBeginLeave && elementData.isWithinScreen === false) {
-    elementData.onBeginLeave(elementData);
+    elementData.onBeginLeave(elementData, viewport);
   } else if (elementData.onCompleteEnter && elementData.isWithinScreen === true) {
-    elementData.onCompleteEnter(elementData);
+    elementData.onCompleteEnter(elementData, viewport);
   }
 }
 
@@ -123,7 +123,7 @@ export function measure(id) {
   elementData.left = left + viewport.left;
 
   if (elementData.onMeasure) {
-    elementData.onMeasure(elementData);
+    elementData.onMeasure(elementData, viewport);
   }
 }
 
