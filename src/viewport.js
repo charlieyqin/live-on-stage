@@ -21,5 +21,10 @@ export default class Viewport {
     this.left = window.pageXOffset;
     this.bottom = this.top + this.height;
     this.right = this.left + this.width;
+    this.isInvalid = false;
+  }
+
+  invalidate() {
+    this.isInvalid = true;
   }
 }

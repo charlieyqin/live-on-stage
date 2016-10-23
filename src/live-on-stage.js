@@ -123,7 +123,7 @@ export function measure(id) {
   elementData.left = left + viewport.left;
 
   if (elementData.onMeasure) {
-    elementData.onMeasure(elementData, viewport);
+    elementData.onMeasure(elementData, viewport, window.pageYOffset);
   }
 }
 
@@ -156,6 +156,7 @@ export function startTrackingElement(element, opts) {
   if (!viewport) {
     viewport = new Viewport();
     window.addEventListener('scroll', () => {
+      viewport.invalidate();
       if (checkNextFrame) {
         cancelAnimationFrame(checkNextFrame);
       }
@@ -175,6 +176,11 @@ export function startTrackingElement(element, opts) {
   numElementsToCheck++;
   elementIdsToCheck.push(elementId);
   elements[elementId] = elementData;
+
+  if (viewport.isInvalid) {
+    viewport.update();
+  }
+
   measure(elementId);
   check(elementData);
   checkNew(elementData);
