@@ -2,10 +2,15 @@
 
 Live on Stage adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.0.13] 2016-11-09
+## [2.0.14] 2016-11-09
 
 ### Fixed
 - Checking for viewport manual check.
+
+## [2.0.13] 2016-10-23
+
+### Fixed
+- Race condition where an element was measured *after* a scroll event and *before* its `rAF` throttle.
 
 ## [2.0.12] 2016-10-14
 
