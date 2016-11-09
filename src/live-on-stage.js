@@ -203,5 +203,7 @@ export function stopTrackingElement(id) {
 }
 
 export function manuallyCheckAll() {
-  requestAnimationFrame(checkAll);
+  if (viewport) {
+    requestAnimationFrame(checkAll);
+  }
 }
