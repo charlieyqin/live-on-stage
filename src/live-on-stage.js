@@ -213,3 +213,9 @@ export function manuallyCheckAll() {
     requestAnimationFrame(checkAll);
   }
 }
+
+export function manuallyMeasureAll() {
+  if (viewport) {
+    requestAnimationFrame(measureAll);
+  }
+}
