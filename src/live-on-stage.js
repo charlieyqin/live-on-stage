@@ -98,11 +98,14 @@ function checkNew(elementData) {
  * @return {void}
  */
 function checkAll() {
-  viewport.update();
-
   for (let i = 0; i < numElementsToCheck; i++) {
     check(elements[elementIdsToCheck[i]]);
   }
+}
+
+function updateAndCheckAll() {
+  viewport.update();
+  checkAll();
 }
 
 /**
@@ -134,6 +137,7 @@ export function measure(id) {
  */
 function measureAll() {
   viewport.remeasure();
+  viewport.update();
 
   for (let i = 0; i < numElementsToCheck; i++) {
     measure(elementIdsToCheck[i]);
@@ -160,7 +164,7 @@ export function startTrackingElement(element, opts) {
       if (checkNextFrame) {
         cancelAnimationFrame(checkNextFrame);
       }
-      checkNextFrame = requestAnimationFrame(checkAll);
+      checkNextFrame = requestAnimationFrame(updateAndCheckAll);
     });
     window.addEventListener('resize', debounce(measureAll, 100));
   }
@@ -210,7 +214,7 @@ export function stopTrackingElement(id) {
 
 export function manuallyCheckAll() {
   if (viewport) {
-    requestAnimationFrame(checkAll);
+    requestAnimationFrame(updateAndCheckAll);
   }
 }
 

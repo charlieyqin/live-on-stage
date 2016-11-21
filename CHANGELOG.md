@@ -2,6 +2,11 @@
 
 Live on Stage adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.16] 2016-11-21
+
+### Fixed
+- Make sure viewport is updated before elements are remeasured.
+
 ## [2.0.15] 2016-11-21
 
 ### Added
