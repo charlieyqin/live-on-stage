@@ -2,6 +2,11 @@
 
 Live on Stage adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.17] 2016-11-22
+
+### Fixed
+- Falsey check preventing id: `0` from being unmounted.
+
 ## [2.0.16] 2016-11-21
 
 ### Fixed

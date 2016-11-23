@@ -28,7 +28,7 @@ class OnStage extends React.Component {
   }
 
   stopTrackingPosition() {
-    if (this.trackId) {
+    if (typeof this.trackId !== 'undefined') {
       stopTrackingElement(this.trackId);
     }
   }
